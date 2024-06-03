@@ -9,6 +9,7 @@ import Layout from "./../components/Layout/Layout";
 import { AiOutlineReload } from "react-icons/ai";
 import "../styles/Homepage.css";
 
+
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
@@ -135,7 +136,7 @@ const HomePage = () => {
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((p) => (
                 <div key={p._id}>
-                  <Radio value={p.array}>{p.name}</Radio>
+                  <Radio value={p.array}>₹&nbsp;{p.name}</Radio>
                 </div>
               ))}
             </Radio.Group>
@@ -163,10 +164,7 @@ const HomePage = () => {
                   <div className="card-name-price">
                     <h5 className="card-title">{p.name}</h5>
                     <h5 className="card-title card-price">
-                      {p.price.toLocaleString("en-US", {
-                        style: "currency",
-                        currency: "USD",
-                      })}
+                      ₹{p.price.toLocaleString()}
                     </h5>
                   </div>
                   <p className="card-text ">

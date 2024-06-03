@@ -25,8 +25,8 @@ const CartPage = () => {
         total = total + item.price;
       });
       return total.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
+        // style: "currency",
+        // currency: "USD",
       });
     } catch (error) {
       console.log(error);
@@ -62,11 +62,12 @@ const CartPage = () => {
   const handlePayment = async () => {
     try {
       setLoading(true);
-      const { nonce } = await instance.requestPaymentMethod();
+      // const { nonce } = await instance.requestPaymentMethod();
       const { data } = await axios.post("/api/v1/product/braintree/payment", {
-        nonce,
+        // nonce,
         cart,
       });
+
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
@@ -113,7 +114,7 @@ const CartPage = () => {
                   <div className="col-md-4">
                     <p>{p.name}</p>
                     <p>{p.description.substring(0, 30)}</p>
-                    <p>Price : {p.price}</p>
+                    <p>Price : ₹{p.price}</p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button
@@ -130,7 +131,7 @@ const CartPage = () => {
               <h2>Cart Summary</h2>
               <p>Total | Checkout | Payment</p>
               <hr />
-              <h4>Total : {totalPrice()} </h4>
+              <h4>Total : ₹{totalPrice()} </h4>
               {auth?.user?.address ? (
                 <>
                   <div className="mb-3">
